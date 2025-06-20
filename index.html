@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        /* Global styles */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Prevents scrolling */
+            background-color: #008080; /* Windows 95/98 teal background */
+            font-family: "Arial", sans-serif;
+        }
+
+        #taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background-color: #C0C0C0; /* Classic Windows gray */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid black;
+            z-index: 1000; /* Ensures taskbar stays on top of other content */
+        }
+
+        #start-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px 20px;
+        }
+
+        #start-button img {
+            height: 30px; /* Adjust size of the start button */
+        }
+
+        #clock {
+            margin-right: 20px;
+            padding: 2px 4px;
+            background: #C0C0C0; /* Classic gray for the clock box */
+            border: 1px solid #808080; /* Darker gray border */
+            box-shadow: inset 1px 1px 2px #808080, inset -1px -1px 2px #FFFFFF; /* Inset effect */
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Start menu styles */
+        #start-menu {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            width: 200px;
+            background-color: #C0C0C0;
+            border: 2px solid black;
+            display: none;
+        }
+
+        #start-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #start-menu ul li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #start-menu ul li:hover {
+            background-color: #808080;
+        }
+
+        /* Desktop styles */
+        #desktop {
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #008080; /* Teal background */
+            padding-bottom: 40px; /* For taskbar space */
+        }
+
+        .icon {
+            position: absolute;
+            text-align: center;
+            width: 60px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .icon img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .icon span {
+            display: block;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Taskbar -->
+    <div id="taskbar">
+        <a href="" id="start-button">
+            <img src="https://i.redd.it/s120xizbj4r81.jpg" alt="Start">
+        </a>
+        <div id="clock">12:00 PM</div>
+    </div>
+
+    <!-- Desktop with links represented as icons -->
+<div id="desktop">
+    <a href="" class="icon" style="top: 0px; left: 50px;" target="_blank">
+        <img src="https://gorbaganachain.xyz" alt="Gorbagana">
+        <span>Gorbagana</span>
+    </a>
+
+    
+</div>
+
+
+    <script>
+        function updateClock() {
+            const clockElement = document.getElementById('clock');
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // If hours equals 0, show 12
+            const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+            clockElement.textContent = `${hours}:${formattedMinutes} ${ampm}`;
+        }
+
+        setInterval(updateClock, 1000); // Update clock every second
+        updateClock(); // Initial call to display the clock immediately
+    </script>
+</body>
+</html>
